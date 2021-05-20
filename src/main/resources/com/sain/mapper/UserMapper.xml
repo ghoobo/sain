@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sain.mapper.UserMapper">
+
+    <resultMap id="userMap" type="User">
+        <id column="user_id" property="id" />
+        <result column="tel" property="tel" />
+        <result column="password" property="password" />
+        <result column="realname" property="realName" />
+        <result column="identity" property="identity" />
+        <result column="archives" property="archives" />
+        <result column="isvip" property="isVip" />
+    </resultMap>
+
+    <insert id="insert">
+        insert into users values(null,#{username},#{password},#{realName},#{identity},#{archives},0)
+    </insert>
+
+    <update id="updatePassword">
+        update users set password=#{password} where user_id=#{id}
+    </update>
+
+    <update id="suspend">
+        update users set isvip=1 where user_id = #{id}
+    </update>
+
+    <update id="open">
+        update users set isvip=0 where user_id = #{id}
+    </update>
+
+    <select id="selectAllCount" resultType="int">
+        select count(*) from users
+    </select>
+
+    <select id="selectOne" resultMap="userMap">
+        select * from users where isvip=0 and username=#{username} and password=#{password}
+    </select>
+
+    <select id="selectAll" resultMap="userMap">
+        select * from users limit #{offset},#{limit}
+    </select>
+
+</mapper>

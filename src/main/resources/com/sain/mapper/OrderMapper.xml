@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sain.mapper.OrderMapper">
+
+    <resultMap id="orderMap" type="Order">
+        <id column="order_id" property="orderId" />
+        <result column="user_id" property="userId" />
+        <result column="car_id" property="carId" />
+        <result column="order_time" property="orderTime" />
+        <result column="take_time" property="takeTime" />
+        <result column="return_time" property="returnTime" />
+        <result column="take_location" property="takeLocation" />
+        <result column="return_location" property="returnLocation" />
+        <result column="rent_price" property="rentPrice" />
+        <result column="service_price" property="servicePrice" />
+        <result column="tel" property="tel" />
+        <result column="ispay" property="isPay" />
+        <association property="car" javaType="Car">
+            <id column="car_id" property="id" />
+            <result column="type" property="type" />
+            <result column="brand" property="brand" />
+            <result column="model" property="model" />
+            <result column="color" property="color" />
+            <result column="seat" property="seat" />
+            <result column="gear" property="gear" />
+            <result column="fuel" property="fuel" />
+            <result column="main_image" property="mainImage" />
+            <result column="front_image" property="frontImage" />
+            <result column="side_image" property="sideImage" />
+            <result column="rear_image" property="rearImage" />
+            <result column="isrenting" property="isRenting" />
+            <result column="location" property="location" />
+            <result column="rent" property="rent" />
+            <result column="description" property="description" />
+            <result column="isdelete" property="isDelete" />
+            <result column="license_plate_number" property="number" />
+        </association>
+    </resultMap>
+    
+    <insert id="addOrder">
+        insert into orders values(#{orderId},#{userId},#{carId},SYSDATE(),#{takeTime},#{returnTime},#{takeLocation},#{returnLocation},#{rentPrice},40,#{tel},0)
+    </insert>
+
+    <update id="updateOrder">
+        update orders set ispay=1 where order_id = #{id}
+    </update>
+
+    <update id="takeCar">
+        update orders set ispay=2 where order_id = #{id}
+    </update>
+
+    <update id="returnCar">
+        update orders set ispay=3 where order_id = #{id}
+    </update>
+
+    <select id="selectCountById" resultType="int">
+        select count(*) from orders where user_id = #{id}
+    </select>
+
+    <select id="selectCountByAdmin" resultType="int">
+        select count(*) from orders where car_id in (
+        select car_id from cars where manager_id = #{id}
+        )
+    </select>
+
+    <select id="selectById" resultMap="orderMap">
+        select * from orders t1
+        left join cars t2
+        on t1.car_id = t2.car_id
+        where user_id = #{id}
+        order by order_time desc
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="selectOrderByAdmin" resultMap="orderMap">
+        select * from orders t1
+        left join cars t2
+        on t1.car_id = t2.car_id
+        where t1.car_id in (
+        select car_id from cars where manager_id = #{id}
+        )
+        order by order_time desc
+        limit #{offset},#{limit}
+    </select>
+
+</mapper>

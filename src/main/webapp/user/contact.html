@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Specific Meta
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Texicab is a modern presentation HTML5 Car Rent template.">
+    <meta name="keywords" content="HTML5, Template, Design, Development, Car Rent" />
+    <meta name="author" content="">
+
+    <!-- Titles
+    ================================================== -->
+    <title>联系我们</title>
+
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    <!-- Custom Font
+    ================================================== -->
+    <link href="https://fonts.googleapis.com/css?family=Exo:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i%7cRoboto+Slab:400,700" rel="stylesheet">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="assets/css/plugins.min.css">
+    <link rel="stylesheet" href="assets/css/icons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/color-schemer.css">
+
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "../user/getSession",
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    if(data.user != null){
+                        $("#toLogin").css("display",'none');
+                        $("#toRegister").css("display",'none');
+                        $("#username").html(data.user.username);
+                    }else {
+                        $("#username").css("display",'none');
+                        $("#toOrder").css("display",'none');
+                        $("#toTrialOrder").css("display",'none');
+                        $("#toExit").css("display",'none');
+                    }
+                }
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+<!-- ====== Header Top Area ====== -->
+<header class="header-top-area bg-nero">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="container-lg-screen">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="header-content-left">
+                            <ul class="header-top-menu hidden-xs">
+                                <li>
+                                    <a href="#" class="top-left-menu">
+                                        <i class="fa fa-envelope"></i>
+                                        <span>ghoobo@163.com</span>
+                                    </a>
+                                </li>
+                            </ul><!-- /.header-top-menu -->
+                        </div><!-- /.header-content-left -->
+                    </div><!-- /.col-md-9 -->
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="header-content-right">
+                            <ul class="header-top-menu visible-xs-block mb-float-left">
+                                <li>
+                                    <a href="#" class="language">
+                                        <i class="fa fa-language"></i>
+                                        <span>Language</span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li><a href="#">English</a></li>
+                                        <li><a href="#">Español</a></li>
+                                        <li><a href="#">Français</a></li>
+                                        <li><a href="#">Português</a></li>
+                                    </ul><!-- /.sub-menu -->
+                                </li>
+                            </ul><!-- /.header-top-menu -->
+                            <ul class="header-top-menu mb-float-right">
+                                <li>
+                                    <a href="#" class="search-open">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="trigger-overlay">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- /.left-content -->
+                    </div><!-- /.col-md-3 -->
+                </div><!-- /.row -->
+            </div><!-- /.container-lg-screen -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</header><!-- /.head-area -->
+
+<!-- ======= Header Modal Area =======-->
+<div class="header-modal-area">
+
+    <!-- Modal Search -->
+    <div class="overlay overlay-scale">
+        <button type="button" class="overlay-close">&#x2716;</button>
+        <div class="overlay__content">
+            <form id="search-form" class="search-form outer" action="#" method="post">
+                <div class="input-group">
+                    <input type="text" class=" input--full" placeholder="search text here ...">
+                </div>
+                <button class="btn text-uppercase search-button">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="overlay-sidebar">
+        <div class="author-area">
+            <a href="#" class="closebtn">&times;</a>
+            <div class="author-area-content">
+                <div class="login-author">
+                    <div class="author-info">
+                        <div class="author-des">
+                            <h4 class="author-name" id="username" style=" margin-left: 80px;">用户名</h4>
+                        </div><!-- /.author-des -->
+                    </div><!-- /.author-info -->
+                    <div class="author-menu">
+                        <ul class="yellow-color">
+                            <li id="toOrder"><a href="order.html"><i class="fa fa-archive"></i>订单</a></li>
+                            <li id="toTrialOrder"><a href="trialOrder.html"><i class="fa fa-archive"></i>试驾</a></li>
+                            <li id="toExit"><a href="../user/logout"><i class="fa fa-sign-out"></i>注销</a></li>
+                            <li id="toLogin"><a href="login.html"><i class="fa fa-sign-in"></i>登录</a></li>
+                            <li id="toRegister"><a href="register.html"><i class="fa fa-registered"></i>注册</a></li>
+                        </ul>
+                    </div><!-- /.author-menu -->
+                </div><!-- /.login-author -->
+            </div><!-- /.author-area-content -->
+        </div><!-- /.author-area -->
+    </div><!-- /.overlay-sidebar -->
+</div><!-- /.header-modal-area -->
+
+<!-- ====== Header Nav Area ====== -->
+<header class="header-nav-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="container-lg-screen">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-10">
+                        <div class="site-logo">
+                            <a href="index.html"><img src="assets/images/sain-logo.png" alt="header-logo" /></a>
+                        </div><!-- /.logo -->
+                    </div><!-- /.col-md-2 -->
+                    <div class="col-md-8 col-sm-8 col-xs-2">
+                        <nav id="main-nav" class="site-navigation top-navigation nav-style-three">
+                            <div class="menu-wrapper">
+                                <div class="menu-content">
+                                    <ul class="menu-list">
+                                        <li>
+                                            <a href="index.html">首页</a>
+                                        </li>
+                                        <li>
+                                            <a href="carlist.html">上门取送</a>
+                                        </li>
+                                        <li>
+                                            <a href="triallist.html">豪车试驾</a>
+                                        </li>
+                                        <li>
+                                            <a href="longrent.html">长租</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">活动</a>
+                                        </li>
+                                        <li>
+                                            <a href="contact.html">合作</a>
+                                        </li>
+                                    </ul> <!-- /.menu-list -->
+                                </div> <!-- /.menu-content-->
+                            </div> <!-- /.menu-wrapper -->
+                        </nav><!-- /.site-navigation -->
+                        <!--Mobile Main Menu-->
+                        <div class="mobile-menu-main hidden-md hidden-lg pdm-10">
+                            <div class="menucontent overlaybg"> </div>
+                            <div class="menuexpandermain slideRight">
+                                <a id="navtoggole-main" class="animated-arrow slideLeft menuclose">
+                                    <span></span>
+                                </a>
+                            </div><!--/.menuexpandermain-->
+
+                            <div id="mobile-main-nav" class="mb-navigation slideLeft">
+                                <div class="menu-wrapper">
+                                    <div id="main-mobile-container" class="menu-content clearfix"></div>
+                                </div>
+                            </div><!--/#mobile-main-nav-->
+                        </div><!--/.mobile-menu-main-->
+                    </div><!-- /.col-md-8 -->
+                    <div class="col-md-2 pd-zero hidden-xs">
+                        <div class="tel-contact-number">
+                            <a href="tel:01623-58030020">+86 178 0385 5488</a>
+                            <span class="icon-part">
+                                    <i class="fa fa-phone"></i>
+                                </span>
+                        </div>
+                    </div><!-- /.col-md-2 -->
+                </div><!-- /.row -->
+            </div><!-- /.container-lg-screen -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</header><!-- /.header-bottom-area -->
+
+    <!-- ====== Page Header ====== -->
+    <div class="page-header nevy-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">                
+                    <h2 class="page-title">合作</h2>
+                    <p class="page-description yellow-color">联系我们</p>
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row-->
+        </div><!-- /.container-fluid -->           
+    </div><!-- /.page-header --> 
+
+    <!-- ====== Page Header ====== -->
+    <div class="contact-us-area mr-top-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading-content-three">
+                        <h2 class="title">留下您的信息</h2>
+                    </div><!-- /.section-title-area -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="contact-us-content-left">
+                        <div class="contact">
+                            <h4><i class="fa fa-map-marker"></i>地址</h4>
+                            <p>河南省郑州市金水区<br>文化路97号</p>
+                        </div><!-- /.contact -->
+                    
+                        <div class="contact">
+                            <h4><i class="fa fa-phone"></i>电话</h4>
+                            <p>+86 17803855488 <br>0371 62950669</p>
+                        </div><!-- /.contact -->
+
+                        <div class="contact">
+                            <h4><i class="fa fa-envelope"></i>邮箱</h4>
+                            <p>ghoobo@163.com <br />  1127755610@qq.com</p>
+                        </div><!-- /.contact -->
+
+                        <div class="contact">
+                            <h4><i class="fa fa-user-circle"></i>其他</h4>
+                            <div class="social-icon">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                            </div><!-- /.Social-icon -->
+                        </div><!-- /.contact -->
+                    </div><!-- /.contactus-content-left -->
+                </div><!-- /.col-md-4 -->
+                
+                <div class="col-md-8">
+                    <div class="contact-us-content-right">
+                        <form action="../request/addRequest" method="post">
+                            <h3 class="from-title"></h3>
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            <div class="input-content clearfix">
+                                <h4>给我们发送邮件</h4>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" name="name" placeholder="姓名" class="form-control">
+                                    </div><!-- /.col-sm-6 -->
+                                    <div class="col-sm-6">
+                                        <input type="text" name="tel" placeholder="您的电话" class="form-control">
+                                    </div><!-- /.col-sm-6 -->
+                                    <div class="col-md-6">
+                                        <input type="text" name="email" placeholder="您的邮件" class="form-control">
+                                    </div><!-- /.col-md-6 -->
+                                    <div class="col-md-6">
+                                        <input type="text" name="location" placeholder="您的详细地址" class="form-control">
+                                    </div><!-- /.col-md-6 -->
+                                    <div class="col-md-12">
+                                        <textarea rows="2" cols="80" name="text" placeholder="您的详细介绍(200字内)"></textarea>
+                                    </div><!-- /.col-md-12 -->
+                                </div><!-- /.row -->
+                                <div class="subimt-button clearfix">
+                                    <input type="submit" value="提交" class="submit yellow-button">
+                                </div><!-- /.subimt -->
+                            </div><!-- /.input-content -->
+                        </form>
+                    </div><!-- /.contactus-content-right -->
+                </div><!-- /.col-md-8 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.contact-us -->
+
+    <!-- ======footer area======= -->
+    <div class="container footer-top-border">
+        <div class="vehicle-multi-border yellow-black"></div><!-- /.vehicle-multi-border -->
+    </div><!-- /.container -->
+
+    <footer class="footer-block bg-black" style="background-image: url(assets/images/footer-bg.png);">
+    <div class="container">
+        <!-- footer-top-block -->
+        <div class="footer-top-block yellow-theme">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget widget_about">
+                        <h3 class="widget-title">
+                            关于我们
+                        </h3><!-- /.widget-title -->
+                        <div class="widget-about-content">
+                            <!--<img src="assets/images/car-logo.png" alt="logo" />-->
+                            <p>一个新兴的租车平台。</p>
+                            <a href="#" class="button">更多</a>
+                        </div><!-- /.widget-content -->
+                    </div><!-- /.widget widget_about -->
+                </div><!-- /.col-md-3 -->
+                <div class="col-md-2 col-sm-6">
+                    <div class="widget widget_menu">
+                        <h3 class="widget-title">
+                            友情链接
+                        </h3><!-- /.widget-title -->
+                        <ul>
+                            <li><a href="#">主页</a></li>
+                            <li><a href="https://www.zuche.com/">神州租车</a></li>
+                            <li><a href="https://www.1hai.cn/">一嗨租车</a></li>
+                            <li><a href="https://www.wkzuche.com/">悟空租车</a></li>
+                            <li><a href="http://www.dafang24.com/">大方租车</a></li>
+                        </ul>
+                    </div><!-- /.widget -->
+                </div><!-- /.col-md-3 -->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget widget_hot_contact">
+                        <h3 class="widget-title">
+                            联系我们
+                        </h3><!-- /.widget-title -->
+                        <ul>
+                            <li><a href="#"><i class="fa fa-envelope"></i>ghoobo@163.com</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i>+86 178 0385 5488</a></li>
+                            <li><a href="#"><i class="fa fa-map-marker"></i>河南省郑州市金水区</a></li>
+                        </ul>
+                    </div><!-- /.widget -->
+                </div><!-- /.col-md-3 -->
+
+            </div><!-- /.row -->
+        </div><!-- /.footer-top-block -->
+
+        <!-- footer-bottom-block -->
+        <div class="footer-bottom-block">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="bottom-content-left">
+                        <p class="copyright">Copyright &copy; 2020-现在 <a href="#"></a>版权所有</p>
+                    </div><!-- /.bottom-top-content -->
+                </div><!-- /.col-md-9 -->
+                <div class="col-md-3">
+                    <div class="bottom-content-right">
+                        <div class="social-profile">
+                            <span class="social-profole-title">Follow Us:</span>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-heart"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </div><!-- /.social-profile -->
+                    </div><!-- /.bottom-content-right -->
+                </div><!-- /.col-md-3 -->
+            </div><!-- /.row -->
+        </div><!-- /.footer-bottom-block -->
+    </div><!-- /.container -->
+</footer><!-- /.footer-block -->
+       
+    <!-- All The JS Files
+    ================================================== --> 
+    <script src="assets/js/plugins.min.js"></script>
+    <script src="assets/js/carrent.min.js"></script> <!-- main-js -->
+</body>
+</html>

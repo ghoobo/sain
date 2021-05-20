@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../assets/css/layui.css">
+    <link rel="stylesheet" href="../assets/css/view.css"/>
+    <link rel="icon" href="/favicon.ico">
+    <title>管理后台</title>
+
+    <script src="../../layui/layui.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        layui.use('table', function(){
+            var table = layui.table;
+            table.render({
+                elem: '#demo'
+                ,cols: [[
+                    {field: 'id', title: 'ID', width: 120, sort: true}
+                    ,{field: 'username', title: '用户名', width: 150}
+                    ,{field: 'realName', title: '真实姓名', width: 150}
+                    ,{field: 'identity', title: '身份证', width: 150}
+                    ,{field: 'archives', title: '驾驶证档案号', width: 150}
+                    ,{field: 'isPay', title: '状态', width: 150, templet:function (d) {
+                            if (d.isVip == 0){
+                                return '正常';
+                            }else {
+                                return '禁封';
+                            }
+                        }}
+                    ,{title:"操作",templet:"#caoZuo"}
+                ]]
+                ,url: '../../user/selectAll'
+                ,skin: 'line'
+                ,even: true
+                ,page: true
+                ,limits: [10, 20, 50, 100]
+                ,limit: 10
+            });
+        });
+
+        function toSuspend(id) {
+            layui.use(['layer','table'], function(){
+                var table = layui.table;
+                layer.confirm('确认禁封？', {icon: 3, title:'确认禁封'}, function(index){
+                    $.ajax({
+                        url:"../../user/suspend",
+                        data:"id="+id,
+                        success:function(data){
+                            layer.msg(data.isSuspend,{time:1000});
+                            table.reload("demo");
+                            layer.close(index);
+                        }
+                    })
+                });
+            });
+        }
+
+        function toOpen(id) {
+            layui.use(['layer','table'], function(){
+                var table = layui.table;
+                layer.confirm('确认解封？', {icon: 3, title:'确认解封'}, function(index){
+                    $.ajax({
+                        url:"../../user/open",
+                        data:"id="+id,
+                        success:function(data){
+                            layer.msg(data.isOpen,{time:1000});
+                            table.reload("demo");
+                            layer.close(index);
+                        }
+                    })
+                });
+            });
+        }
+    </script>
+    <script type="text/javascript" id="caoZuo">
+        {{# if(d.isVip == 0){d.isVip = '禁封'}}
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" onclick="toSuspend('{{d.id}}')">禁封</button>
+            {{# } else {d.isPay = '解封'}}
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="toOpen('{{d.id}}')">解封</button>
+            {{# } }}
+    </script>
+    <script id="caoZuo1" type="text/html">
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" onclick="toSuspend('{{d.id}}')">禁封</button>
+    </script>
+</head>
+<body class="layui-view-body">
+<div class="layui-content">
+    <div class="layui-page-header">
+    </div>
+    <div class="layui-row">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="form-box">
+                    <table id="demo"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
