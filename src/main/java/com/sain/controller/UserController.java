@@ -32,7 +32,6 @@ public class UserController {
     @RequestMapping("/login")
     public String login(HttpSession session, String username, String password){
         User user = userService.login(username, password);
-        System.out.println("\033[32;4m" + user + "\033[0m");
         if (user==null){
             return null;
         }else {
@@ -81,7 +80,6 @@ public class UserController {
         Map map = new HashMap();
         User user = (User) session.getAttribute("user");
         map.put("user",user);
-        System.out.println(map);
         return map;
     }
 

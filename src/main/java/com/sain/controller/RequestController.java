@@ -28,8 +28,6 @@ public class RequestController {
     public @ResponseBody
     Map selectAll(int page, int limit){
         Map map = requestService.selectAll(page, limit);
-        System.out.println("\033[32;4m" + page + "\033[0m");
-        System.out.println(map);
         return map;
     }
 

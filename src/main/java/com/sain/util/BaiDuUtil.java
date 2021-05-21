@@ -47,7 +47,6 @@ public class BaiDuUtil {
                 //字符串转成json格式
                 JSONObject jsonObj = JSONObject.parseObject(subStr);
                 //获取经度
-                System.out.println(subStr);
                 Object lng = jsonObj.getJSONObject("result").getJSONObject("location").get("lng");
                 //获取纬度
                 Object lat = jsonObj.getJSONObject("result").getJSONObject("location").get("lat");
@@ -83,8 +82,6 @@ public class BaiDuUtil {
             String str = sb.toString();
             String subStr = str.substring(str.indexOf('(') + 1, str.indexOf("})") + 1);
             JSONObject jsonObj = JSONObject.parseObject(subStr);
-            System.out.println(subStr);
-            System.out.println(jsonObj);
             //获取匹配到的中文地址
             JSONObject object = (JSONObject) jsonObj.getJSONObject("result").get("addressComponent");
             if (!SSHValidateHelper.isEmpty(object)) {

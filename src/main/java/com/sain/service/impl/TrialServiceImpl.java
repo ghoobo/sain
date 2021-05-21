@@ -50,7 +50,6 @@ public class TrialServiceImpl implements TrialService {
     @Override
     public Map returnCar(String id) {
         int count = trialMapper.returnCar(id);
-        System.out.println(id);
         Map map = new HashMap();
         if(count>0){
             map.put("isReturn","还车成功");
@@ -63,7 +62,6 @@ public class TrialServiceImpl implements TrialService {
     @Override
     public Map selectById(int page, int limit, int id) {
         int offset=(page-1)*limit;
-        System.out.println(id);
         List<Trial> list = trialMapper.selectById(offset,limit,id);
         int count = trialMapper.selectCountById(id);
         Map map = new HashMap();

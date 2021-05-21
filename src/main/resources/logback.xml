@@ -17,9 +17,8 @@
     </appender>
 
     <!--项目中根日志控制-->
-    <root level="debug">
+    <root level="DEBUG">
         <appender-ref ref="stdout"/>
-        <appender-ref ref="fileLog"></appender-ref>
        <!-- <appender-ref ref="fileLog"/>-->
     </root>
 

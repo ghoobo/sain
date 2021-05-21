@@ -84,10 +84,6 @@ public class CarController {
         /*Map map = new HashMap();
         map.put("page",page);
         map.put("list",carService.selectAll(page,12));*/
-        System.out.println("\033[32;4m" + takeDate + "\033[0m");
-        System.out.println("\033[32;4m" + takeTime + "\033[0m");
-        System.out.println("\033[32;4m" + type + "\033[0m");
-        System.out.println("\033[32;4m" + maxRent + "\033[0m");
         Map condition = new HashMap();
         condition.put("type",type);
         condition.put("location",location);

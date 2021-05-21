@@ -41,21 +41,17 @@ public class OrderController {
 
         Date takeTime = DateUtil.StringToDate(condition.getTakeDate()+" "+condition.getTakeTime());
         Date returnTime = null;
-        System.out.println("day= " + day);
         if (day == null){
             returnTime = DateUtil.StringToDate(condition.getTakeDate()+" "+condition.getTakeTime());
-            System.out.println("returnTime= " + returnTime);
         }else{
             if (day == 7){
                 StringBuilder sb = new StringBuilder(condition.getTakeDate());
                 sb.replace(8,10,(Integer.parseInt(condition.getTakeDate().substring(8,10))+7)+"");
                 returnTime = DateUtil.StringToDate(sb+" "+condition.getTakeTime());
-                System.out.println("returnTime= " + returnTime);
             }else if (day == 30){
                 StringBuilder sb = new StringBuilder(condition.getTakeDate());
                 sb.replace(5,7,(Integer.parseInt(condition.getTakeDate().substring(5,7))+1)+"");
                 returnTime = DateUtil.StringToDate(sb+" "+condition.getTakeTime());
-                System.out.println("returnTime= " + returnTime);
             }
         }
         User user = (User) session.getAttribute("user");
